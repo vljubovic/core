@@ -48,7 +48,7 @@ function plugin(options, imports, register) {
     imports.connect.use(api);
     
     api.get("/", function(req, res, next) {
-        res.writeHead(302, { "Location": options.sdk ? "/ide.html" : "/static/places.html" });
+        res.writeHead(302, { "Location": options.sdk ? "ide.html" : "static/places.html" });
         res.end();
     });
     
@@ -101,9 +101,9 @@ function plugin(options, imports, register) {
             opts.packed = opts.options.packed = true;
         
         var cdn = options.options.cdn;
-        options.options.themePrefix = "/static/" + cdn.version + "/skin/" + configName;
-        options.options.workerPrefix = "/static/" + cdn.version + "/worker";
-        options.options.CORSWorkerPrefix = opts.packed ? "/static/" + cdn.version + "/worker" : "";
+        options.options.themePrefix = "static/" + cdn.version + "/skin/" + configName;
+        options.options.workerPrefix = "static/" + cdn.version + "/worker";
+        options.options.CORSWorkerPrefix = opts.packed ? "static/" + cdn.version + "/worker" : "";
         
         api.updatConfig(opts.options, {
             w: req.params.w,
@@ -184,9 +184,12 @@ function plugin(options, imports, register) {
     api.get("/configs/require_config.js", function(req, res, next) {
         var config = res.getOptions().requirejsConfig || {};
         config.waitSeconds = 240;
+        console.log(' ----- require_config.js');
+        var str = JSON.stringify(config);
+        str = str.replace(/\/static/g, "static");
         
         res.writeHead(200, {"Content-Type": "application/javascript"});
-        res.end("requirejs.config(" + JSON.stringify(config) + ");");
+        res.end("requirejs.config(" + str + ");");
     });
     
     api.get("/test/all.json", function(req, res, next) {

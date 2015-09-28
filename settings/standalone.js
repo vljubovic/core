@@ -57,13 +57,13 @@ module.exports = function(manifest, installPath) {
         nodeBin: [path.join(installPath, win32 ? "node.exe" : "node/bin/node"), process.execPath],
         installPath: installPath,
         correctedInstallPath: correctedInstallPath,
-        staticPrefix: "/static",
-        projectUrl: "/workspace",
+        staticPrefix: "static",
+        projectUrl: "workspace",
         ideBaseUrl: "http://c9.io",
-        previewUrl: "/preview",
+        previewUrl: "preview",
         dashboardUrl: "https://c9.io/dashboard.html",
         apiUrl: "https://api.c9.dev",
-        homeUrl: "/home",
+        homeUrl: "home",
         collab: false,
         installed: true,
         packed: false,
@@ -73,7 +73,7 @@ module.exports = function(manifest, installPath) {
         isAdmin: true,
         runners: runners,
         builders: builders,
-        themePrefix: "/static/standalone/skin",
+        themePrefix: "static/standalone/skin",
         cdn: {
             version: "standalone",
             cacheDir: __dirname + "/../build",
@@ -138,7 +138,8 @@ module.exports = function(manifest, installPath) {
         pricing: { containers: [] },
         zuora: {},
         localExtend: true,
-        extendDirectory: __dirname + "/../plugins"
+        extendDirectory: __dirname + "/../plugins",
+	baseUrl: "static/"
     };
 
     config.extendOptions = {

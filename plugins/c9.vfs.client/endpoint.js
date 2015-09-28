@@ -63,8 +63,11 @@ define(function(require, exports, module) {
             function init() {
                 options.getServers = undefined;
                 var loc = require("url").parse(baseURI || document.baseURI || window.location.href);
+                var basePath = loc.path;
+                basePath = basePath.substring(0, basePath.lastIndexOf('/'));
                 var defaultServers = [{
-                    url: loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + "/vfs",
+                    //url: loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + "/vfs",
+                    url: loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + basePath + "/vfs",
                     region: "default"
                 }];
                 servers = (urlServers || options.servers || defaultServers).map(function(server) {
@@ -125,7 +128,7 @@ define(function(require, exports, module) {
         }
 
         function isOnline(callback) {
-            http.request("/_ping", {
+            http.request("_ping", {
                 timeout: 3000,
                 headers: {
                     Accept: "application/json"

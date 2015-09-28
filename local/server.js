@@ -330,7 +330,7 @@ var server = {
                     if (options.packed || isRemote)
                         p.loadTheme = loadTheme;
                     else
-                        p.themePrefix = "/static/standalone/skin/default-local";
+                        p.themePrefix = "static/standalone/skin/default-local";
                 }
                 else if (p.packagePath === "plugins/c9.vfs.client/endpoint") {
                     p.getServers = options.getServers;

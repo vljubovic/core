@@ -82,6 +82,7 @@ module.exports = function(config, optimist) {
     config.projectName = path.basename(baseProc);
     config.testing = testing;
     config.debug = debug;
+    config.baseUrl = "static/";
     
     if (!config.startBridge)
         config.startBridge = startBridge;
@@ -125,7 +126,6 @@ module.exports = function(config, optimist) {
         },
         {
             packagePath: "./c9.error/error_handler",
-            mode: config.mode,
             scope: "standalone",
             hostname: config.hostname
         },
