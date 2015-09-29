@@ -526,7 +526,7 @@ define(function(require, exports, module) {
         hash.counter = 0;
         function hash(data, callback) {
             if (!worker) {
-                worker = new Worker('/static/lib/rusha/rusha.min.js');
+                worker = new Worker('static/lib/rusha/rusha.min.js');
                 worker.addEventListener("message", function(e) {
                     // @todo security?
                     
